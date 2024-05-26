@@ -6,6 +6,5 @@ spring:
             uri: lb://servicio-usuarios
             predicates:
               - Path=/api/usuarios/**
-    discovery:
-      locator:
-        enabled: true
+            filters:
+                - StripPrefix=2
