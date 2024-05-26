@@ -1,0 +1,11 @@
+spring:
+  cloud:
+    gateway:
+        routes:
+          - id: servicio-usuarios
+            uri: lb://servicio-usuarios
+            predicates:
+              - Path=/api/usuarios/**
+    discovery:
+      locator:
+        enabled: true
