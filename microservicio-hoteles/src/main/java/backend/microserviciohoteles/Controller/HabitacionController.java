@@ -24,6 +24,10 @@ public class HabitacionController {
     public HabitacionDto detalle(@PathVariable Long id){
         return habitacionService.findById(id);
     }
+    @GetMapping("/listarHotel/{hotelId}")
+    public List<HabitacionDto> listarPorHotel(@PathVariable Long hotelId){
+        return habitacionService.findByHotelId(hotelId);
+    }
 
     @PostMapping("/crear")
     public HabitacionDto crear(@RequestBody HabitacionDto habitacionDto){

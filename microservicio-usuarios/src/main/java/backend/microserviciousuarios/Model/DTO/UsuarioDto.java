@@ -32,7 +32,7 @@ public class UsuarioDto {
     @Email
     private String email;
 
-    private String contraseña;
+    private String password;
 
     private String imagen;
 

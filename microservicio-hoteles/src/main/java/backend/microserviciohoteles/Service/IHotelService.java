@@ -12,6 +12,8 @@ public interface IHotelService {
 
     public HotelDto save(HotelDto hotelDto);
 
+
+
     public void deleteById(Long id);
 
 

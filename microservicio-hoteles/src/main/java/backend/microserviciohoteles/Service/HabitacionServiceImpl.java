@@ -43,11 +43,24 @@ public class HabitacionServiceImpl implements IHabitacionService{
     }
 
     @Override
+    public List<HabitacionDto> findByHotelId(Long id) {
+        if (id == null) {
+            throw new IllegalArgumentException("id no puede ser nulo");
+        }
+        List<Habitacion> habitaciones = habitacionDao.findByHotelId(id);
+        return habitaciones.stream()
+                .map(habitacionMapper::toHabitacionDto)
+                .collect(Collectors.toList());
+    }
+
+    @Override
     public HabitacionDto save(HabitacionDto habitacionDto) {
         Habitacion habitacion = habitacionMapper.toHabitacion(habitacionDto);
         Habitacion savedHabitacion = habitacionDao.save(habitacion);
         return habitacionMapper.toHabitacionDto(savedHabitacion);
     }
+
+
 
     @Override
     public void deleteById(Long id) {
