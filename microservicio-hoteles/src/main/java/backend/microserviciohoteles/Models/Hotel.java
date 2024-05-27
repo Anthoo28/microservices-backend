@@ -31,12 +31,6 @@ public class Hotel {
     @Column(name="Direccion_hotel")
     private String direccion;
 
-    @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
-    @OneToMany(fetch= FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name="ID_hotel")
-    @JsonManagedReference
-    private List<Habitacion> habitaciones;
-
     private String categoria;
 
     private String imagen;

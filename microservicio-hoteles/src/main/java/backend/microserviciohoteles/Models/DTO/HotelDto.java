@@ -8,11 +8,9 @@ import java.util.List;
 @Data
 public class HotelDto {
     private Long id;
-    private Boolean estado;
-
+    private Boolean estado=true;
     private String nombre;
     private String direccion;
     private String categoria;
     private String imagen;
-    private List<Habitacion> habitaciones;
 }

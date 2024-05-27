@@ -24,11 +24,10 @@ public class HotelServiceImpl implements IHotelService{
     @Override
     @Transactional(readOnly = true)
     public List<HotelDto> findAll() {
-        List<Hotel> hoteles = (List<Hotel>) hotelDao.findAll();
-        return hoteles.stream()
-                .map(hotelMapper::toHotelDto)
-                .collect(Collectors.toList());
-
+    List<Hotel>hoteles= (List<Hotel>) hotelDao.findAll();
+    return hoteles.stream()
+        .map(hotelMapper::toHotelDto)
+        .collect(Collectors.toList());
     }
 
     @Override
