@@ -8,3 +8,11 @@ spring:
               - Path=/api/usuarios/**
             filters:
                 - StripPrefix=2
+          - id: servicio-hoteles
+            uri: lb://servicio-hoteles
+            predicates:
+              - Path=/api/hoteles/**
+            filters:
+                - StripPrefix=2
+        
+        
