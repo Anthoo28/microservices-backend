@@ -43,7 +43,8 @@ public class Usuario {
     private String email;
 
     @NotBlank
-    private String contraseña;
+    @Column(name = "contraseña")
+    private String password;
 
     private String imagen;
 

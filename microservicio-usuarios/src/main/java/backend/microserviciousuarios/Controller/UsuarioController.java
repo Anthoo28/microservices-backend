@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
+@CrossOrigin("*")
 @RestController
 public class UsuarioController {
 
