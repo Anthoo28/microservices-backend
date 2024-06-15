@@ -2,13 +2,11 @@ package backend.microserviciohoteles.Models.DTO;
 
 import backend.microserviciohoteles.Models.Habitacion;
 import org.mapstruct.Mapper;
-import org.mapstruct.factory.Mappers;
+import org.mapstruct.Mapping;
 
+@Mapper(componentModel = "spring",  uses = HotelMapper.class)// Assuming you have a HotelMapper
 public interface HabitacionMapper {
+    HabitacionDto toHabitacionDto(Habitacion habitacion);
 
-    HabitacionMapper INSTANCE = Mappers.getMapper(HabitacionMapper.class);
-
-    public HabitacionDto toHabitacionDto(Habitacion habitacion);
-
-    public Habitacion toHabitacion(HabitacionDto habitacionDto);
+    Habitacion toHabitacion(HabitacionDto habitacionDto);
 }
