@@ -7,8 +7,11 @@ import backend.microserviciohoteles.Models.Habitacion;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @Service
@@ -19,6 +22,9 @@ public class HabitacionServiceImpl implements IHabitacionService{
 
     @Autowired
     private HabitacionMapper habitacionMapper;
+
+    @Autowired
+    private CloudinaryService cloudinaryService;
 
 
     @Override
@@ -54,8 +60,13 @@ public class HabitacionServiceImpl implements IHabitacionService{
     }
 
     @Override
-    public HabitacionDto save(HabitacionDto habitacionDto) {
+    public HabitacionDto save(HabitacionDto habitacionDto,  MultipartFile image) throws IOException {
         Habitacion habitacion = habitacionMapper.toHabitacion(habitacionDto);
+        if(image != null && !image.isEmpty()){
+            Map<String, Object> uploadResult = cloudinaryService.upload(image);
+            String imageUrl = uploadResult.get("url").toString();
+            habitacion.setImagen(imageUrl);
+        }
         Habitacion savedHabitacion = habitacionDao.save(habitacion);
         return habitacionMapper.toHabitacionDto(savedHabitacion);
     }
