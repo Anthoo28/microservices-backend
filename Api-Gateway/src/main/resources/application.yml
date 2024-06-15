@@ -13,4 +13,4 @@ spring:
             predicates:
               - Path=/api/hoteles/**
             filters:
-
+              - StripPrefix=2

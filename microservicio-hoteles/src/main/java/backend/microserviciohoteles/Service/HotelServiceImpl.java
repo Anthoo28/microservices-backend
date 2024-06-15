@@ -7,8 +7,11 @@ import backend.microserviciohoteles.Models.Hotel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @Service
@@ -20,6 +23,8 @@ public class HotelServiceImpl implements IHotelService{
     @Autowired
     private HotelMapper hotelMapper;
 
+     @Autowired
+     private CloudinaryService cloudinaryService;
 
     @Override
     @Transactional(readOnly = true)
@@ -42,11 +47,17 @@ public class HotelServiceImpl implements IHotelService{
     }
 
     @Override
-    public HotelDto save(HotelDto hotelDto) {
-    Hotel hotel = hotelMapper.toHotel(hotelDto);
+    public HotelDto save(HotelDto hotelDto, MultipartFile image) throws IOException {
+        Hotel hotel = hotelMapper.toHotel(hotelDto);
+        if (image != null && !image.isEmpty()) {
+            Map<String, Object> uploadResult = cloudinaryService.upload(image);
+            String imageUrl = uploadResult.get("url").toString();
+            hotel.setImagen(imageUrl);
+        }
         Hotel savedHotel = hotelDao.save(hotel);
         return hotelMapper.toHotelDto(savedHotel);
     }
+
 
     @Override
     public void deleteById(Long id) {

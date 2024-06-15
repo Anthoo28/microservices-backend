@@ -4,7 +4,6 @@ import backend.microserviciohoteles.Models.Habitacion;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
-@Mapper(componentModel = "spring")
 public interface HabitacionMapper {
 
     HabitacionMapper INSTANCE = Mappers.getMapper(HabitacionMapper.class);
