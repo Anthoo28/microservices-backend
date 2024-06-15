@@ -1,34 +1,16 @@
 spring:
   cloud:
     gateway:
-      globalcors:
-        corsConfigurations:
-          '[/**]':
-            allowedOrigins: ['http://localhost:4200']
-            allowedMethods:
-              - GET
-              - POST
-              - PUT
-              - DELETE
-              - PATCH
-              - OPTIONS
-            allowedHeaders:
-              - x-requested-with
-              - authorization
-              - Content-type
-              - Authorization
-              - credential
-              - X-XSRF-TOKEN
-      routes:
-        - id: servicio-usuarios
-          uri: lb://servicio-usuarios
-          predicates:
-            - Path=/api/usuarios/**
-          filters:
-            - StripPrefix=2
-        - id: servicio-hoteles
-          uri: lb://servicio-hoteles
-          predicates:
-            - Path=/api/hoteles/**
-          filters:
-            - StripPrefix=2
+        routes:
+          - id: servicio-usuarios
+            uri: lb://servicio-usuarios
+            predicates:
+              - Path=/api/usuarios/**
+            filters:
+                - StripPrefix=2
+          - id: servicio-hoteles
+            uri: lb://servicio-hoteles
+            predicates:
+              - Path=/api/hoteles/**
+            filters:
+              - StripPrefix=2
