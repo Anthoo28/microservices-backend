@@ -19,24 +19,14 @@ public class VueloDto {
     private Long id;
 
     private String numeroVuelo;
-
-
-
     private Long aeropuertoOrigenId;
     private Long aeropuertoLlegadaId;
-
-
     private LocalDate fechaSalida;
-
     private String horaSalida;
-
     private String horaLlegada;
-
     private Integer duracion;
     private int asientosDisponibles;
-
     private String estado;
-
     private Double precio;
 }
 
