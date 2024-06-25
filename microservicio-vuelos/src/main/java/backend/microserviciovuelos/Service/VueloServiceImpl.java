@@ -12,10 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.Time;
-import java.time.Duration;
-import java.time.LocalTime;
-import java.time.ZoneId;
-import java.time.ZonedDateTime;
+import java.time.*;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -42,6 +39,17 @@ public class VueloServiceImpl implements IVueloService {
                 .map(vueloMapper::toVueloDTO)
                 .collect(Collectors.toList());
     return  vuelosDto;}
+
+    @Override
+    public List<VueloDto> findOne(LocalDate fecha) {
+        if (fecha == null) {
+            throw new IllegalArgumentException("fecha no puede ser nulo");
+        }
+        List<Vuelo> vuelos = vueloDao.findByFecha(fecha);
+        return vuelos.stream()
+                .map(vueloMapper::toVueloDTO)
+                .collect(Collectors.toList());
+    }
 
     @Override
     @Transactional(readOnly = true)
@@ -109,6 +117,13 @@ public class VueloServiceImpl implements IVueloService {
 
     @Override
     public void deleteById(Long id) {
-        vueloDao.deleteById(id);
+    if (id == null) {
+        throw new IllegalArgumentException("id no puede ser nulo");
+    }
+Vuelo vuelo = vueloDao.findById(id).orElse(null);
+    if (vuelo != null) {
+        vuelo.setEstado("CANCELADO");
+        vueloDao.save(vuelo);
+    }
     }
 }
