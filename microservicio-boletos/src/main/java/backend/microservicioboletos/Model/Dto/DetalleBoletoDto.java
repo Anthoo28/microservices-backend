@@ -18,11 +18,6 @@ public class DetalleBoletoDto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @ManyToOne
-    @JoinColumn(name = "id_boleto", nullable = false)
-    private Boleto boleto;
-
     private String nombreCompleto;
     private String dni;
     private String asiento;

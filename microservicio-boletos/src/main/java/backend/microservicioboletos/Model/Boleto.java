@@ -1,5 +1,6 @@
 package backend.microservicioboletos.Model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -28,8 +29,12 @@ public class Boleto {
     private String estado;
     private String metodoPago;
     private boolean esIdaYVuelta;
-    @OneToMany(mappedBy = "boleto", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+    @JoinColumn(name = "id_boleto")
     private List<DetalleBoleto> detallesBoleto;
+
     @Column(name = "id_vuelo", nullable = false)
     private Long idVuelo;
 

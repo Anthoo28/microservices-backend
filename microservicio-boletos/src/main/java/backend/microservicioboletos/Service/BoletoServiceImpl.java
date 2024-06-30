@@ -48,7 +48,12 @@ public class BoletoServiceImpl implements IBoletoService{
 
     @Override
     public BoletoDto findById(Long id) {
-        return null;
+        if(id==null){
+            throw new IllegalArgumentException("El id no puede ser nulo");
+        }
+        return boletoDao.findById(id)
+                .map(boletoMapper::toBoletoDto)
+                .orElse(null);
     }
 
     @Override
@@ -83,7 +88,6 @@ public class BoletoServiceImpl implements IBoletoService{
             Double precioInicial = vuelo.getPrecio() + valorCategoria;
 
             DetalleBoleto detalle = new DetalleBoleto();
-            detalle.setBoleto(boleto);
             detalle.setNombreCompleto(detalleDto.getNombreCompleto());
             detalle.setDni(detalleDto.getDni());
             detalle.setAsiento(detalleDto.getAsiento());

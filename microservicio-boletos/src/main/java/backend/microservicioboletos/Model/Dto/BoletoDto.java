@@ -26,3 +26,4 @@ public class BoletoDto {
     private Long idVuelo;
     private List<DetalleBoletoDto> detallesBoleto;
 }
+

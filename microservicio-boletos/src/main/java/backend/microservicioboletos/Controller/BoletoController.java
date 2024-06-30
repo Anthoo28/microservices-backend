@@ -20,9 +20,10 @@ public class BoletoController {
         return boletoService.findAll();
     }
     @GetMapping("/listar/{id}")
-    public BoletoDto detalle(Long id){
+    public BoletoDto detalle(@PathVariable  Long id){
         return boletoService.findById(id);
     }
+
     @PostMapping("/crear")
     public BoletoDto crear(@RequestBody  BoletoDto boletoDto){
         return boletoService.save(boletoDto);
