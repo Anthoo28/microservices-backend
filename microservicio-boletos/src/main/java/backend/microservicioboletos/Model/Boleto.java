@@ -37,5 +37,4 @@ public class Boleto {
 
     @Column(name = "id_vuelo", nullable = false)
     private Long idVuelo;
-
    }

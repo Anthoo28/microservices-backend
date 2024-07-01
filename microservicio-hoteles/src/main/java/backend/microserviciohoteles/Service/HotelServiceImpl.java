@@ -58,7 +58,6 @@ public class HotelServiceImpl implements IHotelService{
         return hotelMapper.toHotelDto(savedHotel);
     }
 
-
     @Override
     public void deleteById(Long id) {
         if(id == null){

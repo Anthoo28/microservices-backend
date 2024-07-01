@@ -12,6 +12,8 @@ import java.util.List;
 
 @RequestMapping("/habitacion")
 @RestController
+
+
 public class HabitacionController {
 
     @Autowired
