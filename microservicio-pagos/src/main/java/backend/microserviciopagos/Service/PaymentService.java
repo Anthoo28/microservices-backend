@@ -37,7 +37,6 @@ public class PaymentService {
         params.put("currency", paymentIntentDTO.getCurrency());
         params.put("description", paymentIntentDTO.getDescription());
 
-
         // Crear el PaymentIntent con los parámetros configurados
         return PaymentIntent.create(params);
     }

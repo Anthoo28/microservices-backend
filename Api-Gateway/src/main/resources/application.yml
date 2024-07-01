@@ -20,12 +20,6 @@ spring:
               - credential
               - X-XSRF-TOKEN
       routes:
-        - id: servicio-vuelos
-          uri: lb://servicio-vuelos
-          predicates:
-            - Path=/api/vuelos/**
-          filters:
-            - StripPrefix=2
         - id: servicio-usuarios
           uri: lb://servicio-usuarios
           predicates:
@@ -36,5 +30,23 @@ spring:
           uri: lb://servicio-hoteles
           predicates:
             - Path=/api/hoteles/**
+          filters:
+            - StripPrefix=2
+        - id: servicio-vuelos
+          uri: lb://servicio-vuelos
+          predicates:
+            - Path=/api/vuelos/**
+          filters:
+            - StripPrefix=2
+        - id: servicio-boletos
+          uri: lb://servicio-boletos
+          predicates:
+            - Path=/api/boletos/**
+          filters:
+            - StripPrefix=2
+        - id: servicio-pagos
+          uri: lb://servicio-pagos
+          predicates:
+            - Path=/api/pagos/**
           filters:
             - StripPrefix=2
