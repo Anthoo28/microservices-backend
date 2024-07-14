@@ -46,6 +46,8 @@ public class BoletoServiceImpl implements IBoletoService{
                         .collect(Collectors.toList());
     }
 
+
+
     @Override
     public BoletoDto findById(Long id) {
         if(id==null){
