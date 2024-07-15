@@ -19,7 +19,7 @@ public class SpringSecurityConfig {
     @Bean
     public SecurityWebFilterChain configure(ServerHttpSecurity http) {
         return http.authorizeExchange()
-                .pathMatchers("/api/security/**").permitAll()
+                .pathMatchers("/api/security/**","/api/usuarios/usuarios").permitAll()
                 .pathMatchers(HttpMethod.GET,
                         "/api/vuelos/vuelo/listar/{id}",
                         "/api/vuelos/vuelo/listar",
