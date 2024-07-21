@@ -27,8 +27,8 @@ public class SpringSecurityConfig {
                         "/api/hoteles/listar/{id}",
                         "/api/usuarios/usuarios"
                 ).permitAll()
-                .pathMatchers(HttpMethod.GET, "/api/usuarios/usuarios/{id}","/api/boletos/boleto/listar").hasAnyRole("ADMIN_ROLE", "USER_ROLE")
-                .pathMatchers("/api/vuelos/**", "/api/hoteles/**", "/api/usuarios/usuarios/**", "/api/boletos/**", "/api/pagos/**").hasRole("ADMIN_ROLE")
+                .pathMatchers(HttpMethod.GET, "/api/usuarios/usuarios/{id}","/api/boletos/boleto/listar").permitAll()
+                .pathMatchers("/api/vuelos/**", "/api/hoteles/**", "/api/usuarios/usuarios/**", "/api/boletos/**", "/api/pagos/**").permitAll()
                 .anyExchange().authenticated()
                 .and().addFilterAt(authenticationFilter, SecurityWebFiltersOrder.AUTHENTICATION)
                 .csrf().disable()
